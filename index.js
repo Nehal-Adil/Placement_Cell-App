@@ -14,8 +14,10 @@ const passportLocal = require("./config/passport-local-strategy");
 const MongoStore = require("connect-mongo");
 app.use(express.urlencoded());
 
+//Static Files
 app.use(express.static("./assets"));
 
+//Set Up - Extract Styles from Sub Pages into the Layout.
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
@@ -54,6 +56,7 @@ app.use("/", require("./routes"));
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
+//Run the ExpressJS Server
 app.listen(port, function (err) {
   if (err) {
     console.log("err in runnig the server", err);
