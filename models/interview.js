@@ -1,30 +1,33 @@
 const mongoose = require("mongoose");
-const interviewSchema = mongoose.Schema(
+
+const interviewSchema = new mongoose.Schema(
   {
-    email: {
+    company: {
       type: String,
       required: true,
     },
-    companyname: {
+    date: {
       type: String,
       required: true,
     },
-    time: {
-      type: Date,
-    },
-    result: {
-      type: String,
-      enum: ["pass", "fail", "on hold", "not attempted"],
-    },
-    student_id: {
-      type: String,
-    },
+    students: [
+      {
+        student: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Student",
+        },
+        result: {
+          type: String,
+          enum: ["PASS", "FAIL", "Didn't Attempt", "On Hold"],
+        },
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-const Interview = mongoose.model("Interview", interviewSchema);
+const Interview = new mongoose.model("Interview", interviewSchema);
 
 module.exports = Interview;
