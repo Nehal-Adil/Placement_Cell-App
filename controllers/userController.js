@@ -59,31 +59,19 @@ module.exports.create = async (req, res) => {
     }
 
     // check if user already exist
-    User.findOne({ email }, async (err, user) => {
-      if (err) {
-        console.log("Error in finding user in signing up");
-        return;
-      }
+    let user = await User.findOne({ email });
 
-      if (!user) {
-        await User.create(
-          {
-            email,
-            password,
-            username,
-          },
-          (err, user) => {
-            if (err) {
-              console.log("error", "Couldn't sign Up");
-            }
-            return res.redirect("/");
-          }
-        );
-      } else {
-        console.log("error", "Email already registed!");
-        return res.redirect("back");
-      }
-    });
+    if (!user) {
+      await User.create({
+        email,
+        password,
+        username,
+      });
+      return res.redirect("/");
+    } else {
+      console.log("error", "Email already registed!");
+      return res.redirect("back");
+    }
   } catch (err) {
     console.log(err);
   }
