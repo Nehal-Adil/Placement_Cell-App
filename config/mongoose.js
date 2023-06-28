@@ -1,7 +1,7 @@
 //Require the Mongoose Library
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost/placementcell");
+mongoose.connect("mongodb://localhost/placement_development");
 
 // Establish the connection
 const db = mongoose.connection;
