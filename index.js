@@ -1,60 +1,60 @@
-const { setEngine } = require("crypto");
 const express = require("express");
-const app = express();
-const port = 8000;
-const expressLayouts = require("express-ejs-layouts");
-const db = require("./config/mongoose");
-const passport = require("passport");
-const passportJWT = require("./config/passport-jwt-strategy");
-app.use(expressLayouts);
+const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const app = express();
+const port = process.env.PORT || 8000;
+const db = require("./config/mongoose");
+
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
+
+// used for sessions
 const session = require("express-session");
+const passport = require("passport");
+const passportLocal = require("./config/passport");
 
-const passportLocal = require("./config/passport-local-strategy");
 const MongoStore = require("connect-mongo");
-app.use(express.urlencoded());
-
-//Static Files
-app.use(express.static("./assets"));
-
-//Set Up - Extract Styles from Sub Pages into the Layout.
-app.set("layout extractStyles", true);
-app.set("layout extractScripts", true);
 
 app.use(cookieParser());
 
-//mongo store is used to store the session cookie in the db
+// set up view engine
+app.set("view engine", "ejs");
+app.set("views", "./views");
+
+// mongo-store is used to store session cookies in database
 app.use(
   session({
-    // TODO change the secret before deployement in production  mode
-    name: "placement",
-    secret: "secret",
+    name: "placement-cell",
+    secret: "asewe",
     saveUninitialized: false,
     resave: false,
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
-    store: MongoStore.create(
-      {
-        mongoUrl: "mongodb://localhost/placement_development",
-        autoRemove: "disabled",
-      },
-      function (err) {
-        console.log(err || "connect-mongodb setup ok");
-      }
-    ),
+    store: MongoStore.create({
+      mongoUrl: "mongodb://localhost/placement_development",
+      autoRemove: "disabled",
+    }),
+    function(err) {
+      console.log(err || "connect-mongodb setup ok");
+    },
   })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+// sets the authenticated user in the response
 app.use(passport.setAuthenticatedUser);
 
-app.use("/", require("./routes"));
+// using express routers
+app.use(require("./routes"));
 
-app.set("view engine", "ejs");
-app.set("views", "./views");
+// using bodyParser
+app.use(bodyParser.json());
 
 //Run the ExpressJS Server
 app.listen(port, function (err) {
