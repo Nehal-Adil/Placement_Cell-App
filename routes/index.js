@@ -1,12 +1,14 @@
 const express = require("express");
+// const router = require("./users");
+const routers = express.Router();
 
-const router = express.Router();
-const homeController = require("../controllers/home_c");
+// user routes
+routers.use("/", require("./users"));
 
-router.get("/", homeController.home);
+// student routes
+routers.use("/student", require("./students"));
 
-router.use("/emp", require("./emp"));
-router.use("/student", require("./student"));
-router.use("/interview", require("./interview"));
-router.use("/download", require("./download"));
-module.exports = router;
+// interview routes
+routers.use("/interview", require("./interview"));
+
+module.exports = routers;

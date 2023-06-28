@@ -1,29 +1,23 @@
 const express = require("express");
-
+const {
+  addInterview,
+  create,
+  enrollInInterview,
+  deallocate,
+} = require("../controllers/interviewController");
 const router = express.Router();
 
-const intervieController = require("../controllers/interview_c");
+// redering add interview page
+router.get("/add-interview", addInterview);
 
-const passport = require("passport");
+// creating a new interview
+router.post("/create", create);
 
-router.get(
-  "/update/:id",
-  passport.checkAuthentication,
-  intervieController.update
-);
+// enrolling student in an interview
+router.post("/enroll-in-interview/:id", enrollInInterview);
 
-router.get(
-  "/result/:id",
-  passport.checkAuthentication,
-  intervieController.result
-);
+// deallocate the student from the interview
+router.get("/deallocate/:studentId/:interviewId", deallocate);
 
-router.post("/create", passport.checkAuthentication, intervieController.create);
-
-router.post(
-  "/result-update/:id",
-  passport.checkAuthentication,
-  intervieController.resultupdate
-);
-
+// exporting the router
 module.exports = router;
