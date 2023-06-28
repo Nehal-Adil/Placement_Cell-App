@@ -10,45 +10,27 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <title>login</title>
+    <title>SignUp</title>
   </head>
   <body>
     <div class="w-50 border border-dark mx-auto mt-5">
-      <div class="mx-auto mt-3 mb-3" style="width: 200px">
-        <h1>SIGNIN</h1>
+      <div class="mx-auto mt-3 mb-4" style="width: 200px">
+        <h1>SIGNUP</h1>
       </div>
 
-      <form class="w-50 mx-auto" action="/create-session" method="POST">
-        <div class="mb-3">
-          <label for="input-email" class="form-label">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="input-email"
-            placeholder="name@example.com"
-            name="email"
-          />
+      <form class="w-50 mx-auto" action="/create" method="POST">
+        <!-- PARTIAL FOR EMPLOYEES -->
+        <%- include('_create_employee') %>
+
+        <div class="mb-4 mt-3" style="display: flex; justify-content: center">
+          <button type="submit" class="btn btn-primary">SIGNUP</button>
         </div>
 
-        <div class="mb-3">
-          <label for="input-password" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="input-password"
-            name="password"
-          />
-        </div>
-
-        <div style="display: flex; justify-content: center">
-          <button type="submit" class="btn btn-primary">LOGIN</button>
+        <div class="mx-auto mb-3 mt-3" style="width: 300px">
+          <h5 style="display: inline">Already Have An Account&nbsp;</h5>
+          <a href="/">SIGN_IN</a>
         </div>
       </form>
-
-      <div class="mx-auto mb-3 mt-3" style="width: 300px">
-        <h5 style="display: inline">Don't Have An Account&nbsp;</h5>
-        <a href="/sign-up">SIGN_UP</a>
-      </div>
     </div>
 
     <script

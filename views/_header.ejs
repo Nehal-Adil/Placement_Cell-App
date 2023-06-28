@@ -1,22 +1,22 @@
-<link rel="stylesheet" href="/css/header.css" />
-<header id="header-nav">
-  <h1 id="pc">PlacementCell</h1>
-  <ul id="links">
-    <% if (locals.user){ %>
+<header>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Placement Cell</a>
+      <% if(locals.user) { %>
+      <a class="navbar-brand" href="/profile"
+        >Hello <%= locals.user.username%></a
+      >
+      <%}%>
 
-    <a id="name" href="/emp/profile"> <%= user.name %> </a>
-
-    <br />
-    <a id="signout" href="/emp/sign-out">Sign Out</a>
-
-    <% }else{ %>
-
-    <a href="/emp/sign-in">Sign In</a>
-
-    <br />
-
-    <a href="/emp/sign-up">Sign Up</a>
-
-    <% } %>
-  </ul>
+      <form class="d-flex">
+        <a class="navbar-brand" href="/dashboard">Dashboard</a>
+        <a class="navbar-brand" href="/student/add-student">Add new Student</a>
+        <a class="navbar-brand" href="/interview/add-interview"
+          >Add Interview</a
+        >
+        <a class="navbar-brand" href="/download">Report</a>
+        <a class="navbar-brand" href="/sign-out">Signout</a>
+      </form>
+    </div>
+  </nav>
 </header>
