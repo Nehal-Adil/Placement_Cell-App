@@ -12,10 +12,6 @@ module.exports.create = async function (req, res) {
 
   if (!user) {
     Employee.create(req.body);
-    if (err) {
-      console.log("error in creating user while signing up");
-      return;
-    }
 
     return res.redirect("/emp/sign-in");
   } else {
@@ -23,6 +19,7 @@ module.exports.create = async function (req, res) {
   }
 };
 
+//Sign Up
 module.exports.signup = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect("/emp/profile");
@@ -30,6 +27,7 @@ module.exports.signup = function (req, res) {
   res.render("sign_up");
 };
 
+//Sign In
 module.exports.singnin = function (req, res) {
   if (req.isAuthenticated()) {
     return res.redirect("/emp/profile");
@@ -45,15 +43,13 @@ module.exports.createSession = function (req, res) {
 //profile and rendr all students in a list
 module.exports.profile = function (req, res) {
   Student.find({}, function (err, student) {
-    if (err) {
-      throw err;
-    }
     return res.render("profile", {
       students: student,
     });
   });
 };
 
+//Sign Out
 module.exports.signout = function (req, res) {
   req.logout(function (err) {
     if (err) {

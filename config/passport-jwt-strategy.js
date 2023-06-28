@@ -9,6 +9,7 @@ let opts = {
   secretOrKey: "placementCell",
 };
 
+// finding the user if it exist
 passport.use(
   new JWTStrategy(opts, function (jwtPayLoad, done) {
     Employee.findById(jwtPayLoad._id).then((user) => {

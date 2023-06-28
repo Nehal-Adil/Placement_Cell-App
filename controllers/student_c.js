@@ -1,5 +1,6 @@
 const Student = require("../models/student");
 
+// New Student
 module.exports.createStudent = function (req, res) {
   Student.create(req.body).then((student) => {
     console.log("student added");

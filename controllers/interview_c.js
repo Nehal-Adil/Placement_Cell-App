@@ -5,6 +5,7 @@ module.exports.home = function (req, res) {
   res.render("interview_form");
 };
 
+// Scheduling interview for students
 module.exports.create = async (req, res) => {
   console.log(req.body.student_id);
   let interview = await Interview.create(req.body);

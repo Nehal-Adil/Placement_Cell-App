@@ -1,19 +1,29 @@
-const express=require('express');
+const express = require("express");
 
-const router=express.Router();
+const router = express.Router();
 
-const intervieController=require('../controllers/interview_c');
+const intervieController = require("../controllers/interview_c");
 
-const passport=require('passport');
+const passport = require("passport");
 
+router.get(
+  "/update/:id",
+  passport.checkAuthentication,
+  intervieController.update
+);
 
+router.get(
+  "/result/:id",
+  passport.checkAuthentication,
+  intervieController.result
+);
 
-router.get('/update/:id',passport.checkAuthentication,intervieController.update);
+router.post("/create", passport.checkAuthentication, intervieController.create);
 
-router.get('/result/:id',passport.checkAuthentication,intervieController.result);
+router.post(
+  "/result-update/:id",
+  passport.checkAuthentication,
+  intervieController.resultupdate
+);
 
-router.post('/create',passport.checkAuthentication,intervieController.create);
-
-router.post('/result-update/:id',passport.checkAuthentication,intervieController.resultupdate);
-
-module.exports=router;
+module.exports = router;
