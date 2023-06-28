@@ -1,40 +1,65 @@
 const mongoose = require("mongoose");
 
 //Student Schema
-const studentSchema = mongoose.Schema(
+
+const studentSchema = new mongoose.Schema(
   {
-    student_id: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     name: {
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     college: {
       type: String,
-    },
-    status: {
-      type: String,
-      enum: ["placed", "not_placed"],
       required: true,
     },
-    dsa: {
+    batch: {
       type: String,
+      required: true,
     },
-    webd: {
+    dsa_score: {
+      type: Number,
+      required: true,
+    },
+    webdev_score: {
+      type: Number,
+      required: true,
+    },
+    react_score: {
+      type: Number,
+      required: true,
+    },
+    placementStatus: {
       type: String,
+      enum: ["Placed", "Not placed"],
+      required: true,
     },
-    react: {
-      type: String,
-    },
+    interviews: [
+      {
+        company: {
+          type: String,
+          required: true,
+        },
+        date: {
+          type: String,
+          required: true,
+        },
+        result: {
+          type: String,
+          enum: ["PASS", "FAIL", "Didn't Attempt", "On Hold"],
+        },
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-const Student = mongoose.model("Student", studentSchema);
+const Student = new mongoose.model("Student", studentSchema);
 
 module.exports = Student;
