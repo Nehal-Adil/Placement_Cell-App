@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="/css/profile.css">
+
+
+
+
+
+<div id="main-div">
+    <p id="one">list of students</p>
+    <br>
+   
+    <h1 id="headd"><a id="add" href="/emp/add-student">click to add student</a></h1>
+    <h1 id="headd"><a id="down" href="/download">Download csv.</a></h1>
+
+
+
+
+    <div id="posts-list-container">    
+        <ul>
+            <% for(student of students){ %>
+
+                <div id="sec-main">
+                    <br>
+                    <ul>
+                        <form id="update" action="/student/update" method="POST">
+                            <div id="students">
+                            <p class="student-list">name: <%- student.name -%></p> 
+                            <p  class="student-list">id: <%- student.student_id -%></p>
+                            <p  class="student-list">college: <%- student.college -%></p> 
+                            <p  class="student-list">status: <%- student.status -%></p> 
+                            <ol><h2>Result</h2></ol>
+                            <br>
+                            <li  class="student-list">dsa: <%- student.dsa -%></li>
+                            <br>
+                            <li  class="student-list">webd: <%- student.webd -%></li>
+                            <br>
+                            <li  class="student-list">react: <%- student.react -%></li>
+                            <br>
+                            <br>
+                        </div>
+
+                            <h2 id="head2">update details</h2>
+                            <input type="hidden" value="<%= student.id -%>" name="_id">
+                            <label for="status">update status</label>
+                            <input type='text' name="dsa" placeholder="enter dsa final score"  value="<%- student.dsa -%>" required>
+                            <input type="text" name="webd" placeholder="enter webd final score" value="<%- student.webd -%>" required>
+                            <input type="text" name="react" placeholder="enter react final score" value="<%- student.react -%>" required>
+                            <select name="status" id="status">
+                                <option value="placed">placed</option>
+                                <option value="not_placed">not_placed</option>
+                            </select>
+                            <button type="submit">submit</button>  
+                        </form>
+
+
+                        <h2 id="head2">schedule interview for <%- student.name %></h2>
+                        <form id="form2" action="/interview/create" method="POST">
+                            <input type="hidden" value="<%= student._id %>" name="student_id">
+                            <input type="email" name="email" placeholder="email" required>
+                            <input type="text" name="companyname" placeholder="company name" >
+                            <input type="date" name="time" placeholder="date" required>
+                            <input type="submit" value="schedule">
+                            <button type="submit"><a href="/interview/update/<%= student._id %>">All Interviews/update</a></button>
+                        </form>
+
+                </ul>
+                   <br>
+                </div>
+
+                <br>
+                <br>
+                <br><br>
+                  
+              
+                
+            <%} %>
+        </ul>
+       
+    </div>
+
+</div>
+

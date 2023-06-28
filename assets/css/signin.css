@@ -1,0 +1,11 @@
+form{
+    text-align: center;
+    display: flex;
+    justify-content:space-evenly;
+   color: beige;
+}
+
+
+input{
+    margin-top:50px;
+}

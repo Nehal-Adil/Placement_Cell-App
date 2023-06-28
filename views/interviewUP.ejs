@@ -1,0 +1,15 @@
+
+
+<h1>All interviews</h1>
+
+<div>
+    <% for(i of interviews){ %>
+        <div>
+        <h2>Company Name : <%- i.companyname -%></h2>
+       <h2>company Email : <%- i.email -%></h2>
+       <h2>Result Status : <%- i.result -%></h2>  
+        <button type="submit"><a href="/interview/result/<%= i._id %>"> Update Student Result</a></button>
+        </div>
+        <% } %>
+    
+</div>

@@ -1,0 +1,29 @@
+
+<link rel="stylesheet" href="/css/header.css">
+<header id="header-nav">
+  <h1 id="pc">PlacementCell</h1>
+    <ul id="links">
+        <% if (locals.user){ %>
+            
+                <a id="name" href="/emp/profile">
+                    <%= user.name %>
+                </a>
+            
+        <br>
+                <a id="signout" href="/emp/sign-out">Sign Out</a>
+           
+        <% }else{ %>
+
+           
+                <a href="/emp/sign-in">Sign In</a>
+           
+                <br>
+            
+                <a href="/emp/sign-up">Sign Up</a>
+           
+
+
+        <% } %>
+    </ul>
+
+</header>

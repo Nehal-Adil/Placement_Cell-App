@@ -1,0 +1,73 @@
+#one{
+    font-size: 40px;
+    margin-left: 20px;
+   text-align: center;
+}
+
+
+.student-list{
+    border: 1px solid black;
+    display: flex;
+    margin-right: 400px;
+    justify-content: center;
+    
+}
+
+
+body{
+    background-color: rgb(228, 242, 218);
+}
+
+
+#students{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+#update{
+    border: 5px solid black;
+    align-content: center;
+    padding:10px;
+    margin-right: 100px;
+
+}
+
+#head2{
+    text-align: center;
+}
+
+#form2{
+    border: 5px solid black;
+    margin-right: 100px;
+    padding: 10px;
+    text-align: center;
+}
+
+#main-div{
+    border: 10px solid grey;
+}
+
+#sec-main{
+    border: 100px solid black;
+}
+
+
+#add{
+    border: 1px solid green;
+    background-color: green;
+    color: white;
+    text-align: center;
+}
+
+#headd{
+    text-align: center;
+}
+
+#down{
+    border: 1px solid blue;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    text-align: center;
+}
