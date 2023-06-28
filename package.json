@@ -1,0 +1,23 @@
+{
+  "name": "placement-cell-app",
+  "version": "1.0.0",
+  "description": "An app for placement cell to maintain a record of students who are placed and who is not.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "placement",
+    "csv",
+    "placement",
+    "cell"
+  ],
+  "author": "NA7",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.3.1",
+    "nodemon": "^2.0.22"
+  }
+}
